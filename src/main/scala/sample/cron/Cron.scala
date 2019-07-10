@@ -14,6 +14,8 @@ object Cron extends App {
     var day: String = ""
     var timeIn: String = ""
     var config: String = ""
+    var hours: String = ""
+    var minutes: String = ""
 
     println("Please input current time in HH:MM format")
     timeIn = scala.io.StdIn.readLine()
@@ -21,8 +23,8 @@ object Cron extends App {
       println("Use the correct format")
       System.exit(1)
     }
-    var hours: String = timeIn.split(":")(0)
-    var minutes: String = timeIn.split(":")(1)
+    hours = timeIn.split(":")(0)
+    minutes = timeIn.split(":")(1)
     if (hours.toInt > 23 || hours.toInt < 0 || minutes.toInt > 59 || minutes.toInt < 0) {
       println("Input a real time")
       System.exit(1)
