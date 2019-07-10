@@ -65,16 +65,20 @@ object Cron extends App {
           day = "today"
         }
         else if (toRun.contains("times")) {
-          if (hours.toInt > elements(1).toInt) {
-            time = elements(1) + ":" + "00"
-            day = "tomorrow"
-          }
-          else if (hours.toInt == elements(1).toInt) {
-            time = elements(1) + ":" + minutes
+          if (hours.toInt == elements(1).toInt + 1 && minutes.toInt < elements(0).toInt) {
+            time = hours + ":" + minutes
             day = "today"
           }
+          else if (hours.toInt == elements(1).toInt && minutes.toInt >= elements(0).toInt) {
+            time = hours + ":" + minutes
+            day = "today"
+          }
+          else if ((hours.toInt == elements(1).toInt + 1 && minutes.toInt >= elements(0).toInt) || hours.toInt > elements(1).toInt + 1) {
+            time = elements(1) + ":" + elements(0)
+            day = "tomorrow"
+          }
           else {
-            time = elements(1) + ":" + "00"
+            time = elements(1) + ":" + elements(0)
             day = "today"
           }
         }
